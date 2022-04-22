@@ -95,9 +95,6 @@ private:
     // Interrupt routines for UART rx/tx interrupts
     void rxIrq(void);
     void txIrq(void);
-#if (MBED_VERSION >= MBED_ENCODE_VERSION(6,0,0))
-    void slipIrq(void);
-#endif
     void process_rx_byte(uint8_t character);
     bool tx_one_byte();
     void slip_if_rx(const SlipBuffer *rx_buf) const;
