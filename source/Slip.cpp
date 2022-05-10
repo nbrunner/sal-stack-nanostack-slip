@@ -66,7 +66,7 @@ int8_t SlipMACDriver::slip_if_tx(uint8_t *buf, uint16_t len, uint8_t tx_id, data
     (void) data_flow;
     SlipBuffer *pTxBuf;
 
-    //tr_debug("slip_if_tx(): datalen = %d", len);
+    tr_debug("tx: datalen = %d", len);
 
     //TODO: error case needs to be handled
     if (len > SLIP_TX_RX_MAX_BUFLEN) {
@@ -323,6 +323,7 @@ void SlipMACDriver::buffer_handover()
             break;
         }
 
+        tr_debug("rx: datalen = %d", rx_buf->length);
         slip_if_rx(rx_buf);
 
         core_util_critical_section_enter();
