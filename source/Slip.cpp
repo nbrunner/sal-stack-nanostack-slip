@@ -47,6 +47,12 @@ SlipMACDriver::SlipMACDriver(PinName tx, PinName rx, PinName rts, PinName cts) :
 #if DEVICE_SERIAL_FC || defined(YOTTA_CFG_THREAD_TEST_APP_SLIP_SERIAL_HW_FLOW_CONTROL)
     if(rts != NC && cts != NC) {
        set_flow_control(RTSCTS, rts, cts);
+    } else if (rts != NC) {
+        set_flow_control(RTS, rts, NC);
+    } else if (cts != NC) {
+        set_flow_control(CTS, cts, NC);
+    } else {
+        set_flow_control(Disabled, NC, NC);
     }
 #endif
     pCurSlipRxBuffer = NULL;
